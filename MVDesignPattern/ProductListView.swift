@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ProductListView: View {
     
-    @StateObject
-    var viewModel: ProductListViewModel
+    @EnvironmentObject
+    private var viewModel: ProductListViewModel
     
     var body: some View {
         List(viewModel.products) { product in
@@ -24,10 +24,11 @@ struct ProductListView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListView(
-            viewModel: ProductListViewModel(
-                provider: ProductAPIProvider()
+        ProductListView()
+            .environmentObject(
+                ProductListViewModel(
+                    provider: ProductAPIProvider()
+                )
             )
-        )
     }
 }

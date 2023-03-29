@@ -9,13 +9,13 @@ import SwiftUI
 
 @main
 struct MVDesignPatternApp: App {
+    
+    @StateObject var productListViewModel = ProductListViewModel(provider: ProductAPIProvider())
+    
     var body: some Scene {
         WindowGroup {
-            ProductListView(
-                viewModel: ProductListViewModel(
-                    provider: ProductAPIProvider()
-                )
-            )
+            ProductListView()
+                .environmentObject(productListViewModel)
         }
     }
 }

@@ -7,15 +7,41 @@
 
 import SwiftUI
 
+struct LoginViewError {
+    var email: String = ""
+    var password: String = ""
+}
+
 struct LoginView: View {
     
     @State
     private var email: String = ""
+    
     @State
     private var password: String = ""
     
+    @State
+    private var error: LoginViewError = .init()
+    
     var isFormValid: Bool {
-        email.isEmail && password.count >= 2
+        let isPasswordLengthValid = password.count >= 3
+        
+        self.error = {
+            var error = LoginViewError()
+            error.email = {
+                if email.isEmpty {
+                    return "Email not specified"
+                } else if !email.isEmail {
+                    return "Email is invalid"
+                } else {
+                    return ""
+                }
+            }()
+            error.password = isPasswordLengthValid ? "" : "Password is incomplete"
+            return error
+        }()
+        
+        return email.isEmail && isPasswordLengthValid
     }
     
     var body: some View {
@@ -23,13 +49,25 @@ struct LoginView: View {
             Form {
                 TextField("Email", text: $email)
                     .textInputAutocapitalization(.never)
+                
+                if !error.email.isEmpty {
+                    Text(error.email)
+                        .font(.caption)
+                }
+                
                 SecureField("Password", text: $password)
+                
+                if !error.password.isEmpty {
+                    Text(error.password)
+                        .font(.caption)
+                }
             }
             
             Button("Login") {
-                print(#function)
+                if isFormValid {
+                    print(#function)
+                }
             }
-            .disabled(!isFormValid)
         }
     }
 }

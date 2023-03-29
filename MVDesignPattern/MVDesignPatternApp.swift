@@ -11,7 +11,11 @@ import SwiftUI
 struct MVDesignPatternApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ProductListView(
+                viewModel: ProductListViewModel(
+                    provider: ProductAPIProvider()
+                )
+            )
         }
     }
 }

@@ -29,27 +29,26 @@ class LoginViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     
-    @Published var emailError: LoginError? = nil
-    @Published var passwordError: LoginError? = nil
+    @Published var errors: [LoginError] = []
     
     private var isPasswordValid: Bool {
         password.count >= 3
     }
     
     var isFormValid: Bool {
-        emailError = {
-            if email.isEmpty {
-                return .emailIsEmpty
-            } else if !email.isEmail {
-                return .emailIsInvalid
-            } else {
-                return nil
-            }
-        }()
+        errors.removeAll()
         
-        passwordError = isPasswordValid ? nil : .passwordIsInvalid
+        if email.isEmpty {
+            errors.append(.emailIsEmpty)
+        } else if !email.isEmail {
+            errors.append(.emailIsInvalid)
+        }
         
-        return emailError != nil && passwordError != nil
+        if !isPasswordValid {
+            errors.append(.passwordIsInvalid)
+        }
+        
+        return errors.isEmpty
     }
 }
 
@@ -61,19 +60,18 @@ struct LoginView: View {
     var body: some View {
         VStack {
             Form {
-                TextField("Email", text: $viewModel.email)
-                    .textInputAutocapitalization(.never)
-                
-                if let error = viewModel.emailError {
-                    Text(error.localizedDescription)
-                        .font(.caption)
+                Section {
+                    TextField("Email", text: $viewModel.email)
+                        .textInputAutocapitalization(.never)
+                    
+                    SecureField("Password", text: $viewModel.password)
                 }
                 
-                SecureField("Password", text: $viewModel.password)
-                
-                if let error = viewModel.passwordError {
-                    Text(error.localizedDescription)
-                        .font(.caption)
+                Section {
+                    ForEach(viewModel.errors, id: \.hashValue) { error in
+                        Text(error.localizedDescription)
+                            .font(.caption)
+                    }
                 }
             }
             

@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct HelloCoffeeApp: App {
+    
+    @StateObject
+    var model = OrderListModel(provider: OrderListAPIProvider())
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(model)
         }
     }
 }

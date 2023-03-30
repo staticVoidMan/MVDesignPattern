@@ -7,10 +7,18 @@
 
 import Foundation
 
+enum CoffeeSize: String, Codable {
+    case small = "Small"
+    case medium = "Medium"
+    case large = "Large"
+}
+
 struct Order: Codable {
     let id: Int
     let name: String
     let coffeeName: String
     let total: Double
-    let size: String
+    let size: CoffeeSize
 }
+
+extension Order: Identifiable {}

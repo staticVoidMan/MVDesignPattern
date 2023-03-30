@@ -8,19 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject
+    private var model: OrderListModel
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        List(model.orders) { order in
+            OrderCellView(order: order)
         }
-        .padding()
+        .task {
+            await model.getOrders()
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(
+                OrderListModel(
+                    provider: OrderListAPIProvider()
+                )
+            )
     }
 }

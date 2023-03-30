@@ -7,64 +7,78 @@
 
 import SwiftUI
 
-struct LoginViewError {
-    var email: String = ""
-    var password: String = ""
+enum LoginError: Error, LocalizedError {
+    case emailIsEmpty
+    case emailIsInvalid
+    case passwordIsInvalid
+    
+    var errorDescription: String? {
+        switch self {
+        case .emailIsEmpty:
+            return "Email should not be empty"
+        case .emailIsInvalid:
+            return "Email should be valid"
+        case .passwordIsInvalid:
+            return "Password should be atleast 3 characters"
+        }
+    }
+}
+
+class LoginViewModel: ObservableObject {
+    
+    @Published var email: String = ""
+    @Published var password: String = ""
+    
+    @Published var emailError: LoginError? = nil
+    @Published var passwordError: LoginError? = nil
+    
+    private var isPasswordValid: Bool {
+        password.count >= 3
+    }
+    
+    var isFormValid: Bool {
+        emailError = {
+            if email.isEmpty {
+                return .emailIsEmpty
+            } else if !email.isEmail {
+                return .emailIsInvalid
+            } else {
+                return nil
+            }
+        }()
+        
+        passwordError = isPasswordValid ? nil : .passwordIsInvalid
+        
+        return emailError != nil && passwordError != nil
+    }
 }
 
 struct LoginView: View {
     
-    @State
-    private var email: String = ""
-    
-    @State
-    private var password: String = ""
-    
-    @State
-    private var error: LoginViewError = .init()
-    
-    var isFormValid: Bool {
-        let isPasswordLengthValid = password.count >= 3
-        
-        self.error = {
-            var error = LoginViewError()
-            error.email = {
-                if email.isEmpty {
-                    return "Email not specified"
-                } else if !email.isEmail {
-                    return "Email is invalid"
-                } else {
-                    return ""
-                }
-            }()
-            error.password = isPasswordLengthValid ? "" : "Password is incomplete"
-            return error
-        }()
-        
-        return email.isEmail && isPasswordLengthValid
-    }
+    @StateObject
+    private var viewModel: LoginViewModel = .init()
     
     var body: some View {
         VStack {
             Form {
-                TextField("Email", text: $email)
+                TextField("Email", text: $viewModel.email)
                     .textInputAutocapitalization(.never)
                 
-                if !error.email.isEmpty {
-                    Text(error.email)
+                if let error = viewModel.emailError {
+                    Text(error.localizedDescription)
                         .font(.caption)
                 }
                 
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $viewModel.password)
                 
-                if !error.password.isEmpty {
-                    Text(error.password)
+                if let error = viewModel.passwordError {
+                    Text(error.localizedDescription)
                         .font(.caption)
                 }
             }
             
             Button("Login") {
-                if isFormValid {
+                if viewModel.isFormValid {
                     print(#function)
                 }
             }

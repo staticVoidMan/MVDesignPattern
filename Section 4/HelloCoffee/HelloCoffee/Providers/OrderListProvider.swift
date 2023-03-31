@@ -18,7 +18,8 @@ enum NetworkError: Error {
 struct OrderListAPIProvider: OrderListProvider {
     
     func getOrders() async throws -> [Order] {
-        guard let url = URL(string: "https://island-bramble.glitch.me/test/orders")
+        guard let baseURL = URL(string: APIEndpoints.base.path),
+              let url = URL(string: APIEndpoints.listOrders.path, relativeTo: baseURL)
         else { throw NetworkError.badURL }
         
         let (data, _) = try await URLSession.shared.data(from: url)

@@ -13,8 +13,15 @@ struct ContentView: View {
     private var model: OrderListModel
     
     var body: some View {
-        List(model.orders) { order in
-            OrderCellView(order: order)
+        VStack {
+            if model.orders.isEmpty {
+                Text("No orders found!")
+                    .accessibilityIdentifier("noOrdersText")
+            } else {
+                List(model.orders) { order in
+                    OrderCellView(order: order)
+                }
+            }
         }
         .task {
             await model.getOrders()

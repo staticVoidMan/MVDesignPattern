@@ -1,5 +1,5 @@
 //
-//  OrderListProvider.swift
+//  OrderProvider.swift
 //  HelloCoffee
 //
 //  Created by Amin Siddiqui on 30/03/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol OrderListProvider {
+protocol OrderProvider {
     func getOrders() async throws -> [Order]
 }
 
@@ -15,7 +15,7 @@ enum NetworkError: Error {
     case badURL
 }
 
-struct OrderListAPIProvider: OrderListProvider {
+struct OrderAPIProvider: OrderProvider {
     
     func getOrders() async throws -> [Order] {
         guard let baseURL = URL(string: APIEndpoints.base.path),

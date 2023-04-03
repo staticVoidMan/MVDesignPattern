@@ -9,12 +9,12 @@ import Foundation
 
 class OrderListModel: ObservableObject {
     
-    let provider: OrderListProvider
+    let provider: OrderProvider
     
     @Published
     private(set) var orders: [Order] = []
     
-    init(provider: OrderListProvider) {
+    init(provider: OrderProvider) {
         self.provider = provider
     }
     

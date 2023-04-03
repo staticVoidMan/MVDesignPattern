@@ -34,7 +34,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
             .environmentObject(
                 OrderListModel(
-                    provider: OrderListAPIProvider()
+                    provider: OrderAPIProvider()
                 )
             )
     }

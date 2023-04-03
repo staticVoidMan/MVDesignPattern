@@ -26,4 +26,13 @@ extension View {
             }
         }
     }
+    
+    @ViewBuilder
+    func hidden(_ condition: Bool) -> some View {
+        if condition {
+            EmptyView()
+        } else {
+            self
+        }
+    }
 }

@@ -21,6 +21,7 @@
 		90CFDCD729DAA61200D48149 /* HelloCoffeeE2ETestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CFDCD629DAA61200D48149 /* HelloCoffeeE2ETestsLaunchTests.swift */; };
 		90CFDCDE29DAAC6E00D48149 /* PlaceOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CFDCDD29DAAC6E00D48149 /* PlaceOrderView.swift */; };
 		90CFDCE129DAB2BA00D48149 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CFDCE029DAB2BA00D48149 /* View+Extensions.swift */; };
+		90CFDCE329DABD2800D48149 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CFDCE229DABD2800D48149 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		90CFDCD629DAA61200D48149 /* HelloCoffeeE2ETestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloCoffeeE2ETestsLaunchTests.swift; sourceTree = "<group>"; };
 		90CFDCDD29DAAC6E00D48149 /* PlaceOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderView.swift; sourceTree = "<group>"; };
 		90CFDCE029DAB2BA00D48149 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		90CFDCE229DABD2800D48149 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				90CFDCE029DAB2BA00D48149 /* View+Extensions.swift */,
+				90CFDCE229DABD2800D48149 /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				900F8FB029D59B9600E3BB36 /* OrderListModel.swift in Sources */,
+				90CFDCE329DABD2800D48149 /* String+Extensions.swift in Sources */,
 				900F8FAC29D5991600E3BB36 /* Order.swift in Sources */,
 				900F8FAE29D599C800E3BB36 /* OrderProvider.swift in Sources */,
 				9038DECE29D5BC17001B1A26 /* APIEndpoints.swift in Sources */,

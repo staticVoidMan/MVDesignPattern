@@ -31,6 +31,7 @@ enum Environment {
 enum APIEndpoints {
     case base
     case listOrders
+    case createOrder
     
     var path: String {
         switch self {
@@ -43,6 +44,8 @@ enum APIEndpoints {
             }
         case .listOrders:
             return "test/orders"
+        case .createOrder:
+            return "test/new-order"
         }
     }
 }

@@ -37,4 +37,18 @@ class OrderModel: ObservableObject {
             return false
         }
     }
+    
+    func deleteOrder(_ id: OrderID) async -> Bool {
+        guard let index = orders.firstIndex(where: { $0.id == id })
+        else { return true }
+        
+        do {
+            try await provider.deleteOrder(id)
+            orders.remove(at: index)
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
 }

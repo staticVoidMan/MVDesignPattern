@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias OrderID = Int
+
 enum CoffeeSize: String, Codable, CaseIterable {
     case small = "Small"
     case medium = "Medium"
@@ -14,11 +16,11 @@ enum CoffeeSize: String, Codable, CaseIterable {
 }
 
 struct Order: Codable {
-    let id: Int?
+    let id: OrderID?
     let name: String
     let coffeeName: String
     let total: Double
     let size: CoffeeSize
 }
 
-extension Order: Identifiable {}
+extension Order: Identifiable, Hashable {}

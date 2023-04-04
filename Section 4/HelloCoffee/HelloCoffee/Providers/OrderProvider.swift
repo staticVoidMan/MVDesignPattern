@@ -10,6 +10,7 @@ import Foundation
 protocol OrderProvider {
     func getOrders() async throws -> [Order]
     func placeOrder(_ order: Order) async throws -> Order
+    func deleteOrder(_ id: OrderID) async throws
 }
 
 enum NetworkError: Error {
@@ -52,5 +53,19 @@ struct OrderAPIProvider: OrderProvider {
         
         let newOrder = try JSONDecoder().decode(Order.self, from: data)
         return newOrder
+    }
+    
+    func deleteOrder(_ id: OrderID) async throws {
+        guard let baseURL = URL(string: APIEndpoints.base.path),
+              let url = URL(string: APIEndpoints.deleteOrder(id).path, relativeTo: baseURL)
+        else { throw NetworkError.badURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        let (_, response) = try await URLSession.shared.data(for: request)
+        
+        guard (response as? HTTPURLResponse)?.statusCode == 200
+        else { throw NetworkError.badRequest }
     }
 }

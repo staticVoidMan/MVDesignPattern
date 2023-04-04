@@ -29,8 +29,11 @@ struct ContentView: View {
                     .accessibilityIdentifier("noOrdersText")
             },
             else: {
-                List(model.orders) { order in
-                    OrderCellView(order: order)
+                List {
+                    ForEach(model.orders, id: \.hashValue) { order in
+                        OrderCellView(order: order)
+                    }
+                    .onDelete(perform: deleteOrder(at:))
                 }
             }
         )
@@ -48,6 +51,15 @@ struct ContentView: View {
         .embedForNavigation()
         .task {
             await model.getOrders()
+        }
+    }
+    
+    private func deleteOrder(at indices: IndexSet) {
+        indices.forEach { index in
+            guard let id = model.orders[index].id else { return }
+            Task {
+                await model.deleteOrder(id)
+            }
         }
     }
 }

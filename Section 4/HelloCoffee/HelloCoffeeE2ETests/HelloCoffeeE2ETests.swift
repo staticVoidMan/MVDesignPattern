@@ -49,4 +49,45 @@ final class HelloCoffeeE2ETests: XCTestCase {
             print("done")
         }
     }
+    
+    func testShouldDelete_ExistingOrder() {
+        app.buttons["placeOrderButton"].tap()
+        
+        let customerNameField = app.textFields["customerName"]
+        let coffeeNameField = app.textFields["coffeeName"]
+        let priceField = app.textFields["coffeePrice"]
+        
+        customerNameField.tap()
+        customerNameField.typeText("John")
+        
+        coffeeNameField.tap()
+        coffeeNameField.typeText("Some Coffee")
+        
+        priceField.tap()
+        priceField.typeText("99.9")
+        
+        app.buttons["orderCoffee"].tap()
+        
+        let collectionViewsQuery = app.collectionViews
+        let cell = collectionViewsQuery
+            .cells
+            .children(matching: .other)
+            .element(boundBy: 1)
+            .children(matching: .other)
+            .element
+        
+        XCTAssertEqual(cell.waitForExistence(timeout: 1), true)
+        
+        cell.swipeLeft()
+        collectionViewsQuery.buttons["Delete"].tap()
+        
+        let list = app.collectionViews["orderList"]
+        XCTAssertEqual(list.cells.count, 0)
+        
+        addTeardownBlock {
+            let url = URL(string: "https://island-bramble.glitch.me/test/clear-orders")!
+            let (_, _) = try await URLSession.shared.data(from: url)
+            print("done")
+        }
+    }
 }

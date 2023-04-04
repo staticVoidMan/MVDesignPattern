@@ -35,6 +35,7 @@ struct ContentView: View {
                     }
                     .onDelete(perform: deleteOrder(at:))
                 }
+                .accessibilityIdentifier("orderList")
             }
         )
         .sheet(isPresented: $isPlacingOrder) {

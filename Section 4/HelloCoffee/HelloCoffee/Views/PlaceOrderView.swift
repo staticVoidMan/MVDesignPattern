@@ -21,6 +21,10 @@ struct PlaceOrderView: View {
     @State private var price: String = ""
     @State private var coffeeSize: CoffeeSize = .medium
     
+    @Environment(\.dismiss) private var dismiss
+    
+    @EnvironmentObject private var model: OrderModel
+    
     private var isFormValid: Bool {
         errors = .init()
         
@@ -77,16 +81,33 @@ struct PlaceOrderView: View {
             
             Button("Place Order") {
                 if isFormValid {
-                    print(#function)
+                    let order = Order(
+                        id: nil,
+                        name: name,
+                        coffeeName: coffeeName,
+                        total: Double(price) ?? 0,
+                        size: coffeeSize
+                    )
+                    Task {
+                        if await model.placeOrder(order) {
+                            dismiss()
+                        }
+                    }
                 }
             }
             .placement(.center)
         }
+        .embedForNavigation(title: "Add Coffee")
     }
 }
 
 struct PlaceOrderView_Previews: PreviewProvider {
     static var previews: some View {
         PlaceOrderView()
+            .environmentObject(
+                OrderModel(
+                    provider: OrderAPIProvider()
+                )
+            )
     }
 }

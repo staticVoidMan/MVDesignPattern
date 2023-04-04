@@ -14,7 +14,7 @@ enum CoffeeSize: String, Codable, CaseIterable {
 }
 
 struct Order: Codable {
-    let id: Int
+    let id: Int?
     let name: String
     let coffeeName: String
     let total: Double

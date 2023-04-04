@@ -17,13 +17,13 @@
  }'
  */
 
-private let environment: Environment = .test
+private let environment: APIEnvironment = .test
 
-enum Environment {
+enum APIEnvironment {
     case test
     case prod
     
-    static var current: Environment {
+    static var current: APIEnvironment {
         environment
     }
 }
@@ -36,7 +36,7 @@ enum APIEndpoints {
     var path: String {
         switch self {
         case .base:
-            switch Environment.current {
+            switch APIEnvironment.current {
             case .test:
                 return "https://island-bramble.glitch.me"
             case .prod:

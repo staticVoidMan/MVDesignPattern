@@ -41,7 +41,7 @@ struct OrderAPIProvider: OrderProvider {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "ContentType")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try JSONEncoder().encode(order)
         
         let (data, response) = try await URLSession.shared.data(for: request)

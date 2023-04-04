@@ -19,6 +19,8 @@ struct ContentView: View {
         )
     }
     
+    @State private var isPlacingOrder: Bool = false
+    
     var body: some View {
         ConditionalView(
             isOrderListEmpty,
@@ -31,7 +33,18 @@ struct ContentView: View {
                     OrderCellView(order: order)
                 }
             }
+        )
+        .sheet(isPresented: $isPlacingOrder) {
+            PlaceOrderView()
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Place Order") {
+                    isPlacingOrder = true
+                }
+            }
+        }
+        .embedForNavigation()
         .task {
             await model.getOrders()
         }

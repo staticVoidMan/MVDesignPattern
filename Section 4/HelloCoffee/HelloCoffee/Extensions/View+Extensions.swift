@@ -35,4 +35,10 @@ extension View {
             self
         }
     }
+    
+    func embedForNavigation(title: String = "") -> some View {
+        NavigationStack {
+            self.navigationTitle(title)
+        }
+    }
 }

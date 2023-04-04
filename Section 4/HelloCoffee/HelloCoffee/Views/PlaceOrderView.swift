@@ -56,17 +56,20 @@ struct PlaceOrderView: View {
     var body: some View {
         Form {
             TextField("Customer Name", text: $name)
+                .accessibilityIdentifier("customerName")
             Text(errors.customerName)
                 .opacity(0.75)
                 .hidden(errors.customerName.isEmpty)
             
             TextField("Coffee Name", text: $coffeeName)
+                .accessibilityIdentifier("coffeeName")
             Text(errors.coffeeName)
                 .opacity(0.75)
                 .hidden(errors.coffeeName.isEmpty)
             
             TextField("Price", text: $price)
                 .keyboardType(.decimalPad)
+                .accessibilityIdentifier("coffeePrice")
             Text(errors.price)
                 .opacity(0.75)
                 .hidden(errors.price.isEmpty)
@@ -96,6 +99,7 @@ struct PlaceOrderView: View {
                 }
             }
             .placement(.center)
+            .accessibilityIdentifier("orderCoffee")
         }
         .embedForNavigation(title: "Add Coffee")
     }

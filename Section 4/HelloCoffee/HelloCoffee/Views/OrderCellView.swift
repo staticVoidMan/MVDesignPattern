@@ -15,13 +15,13 @@ struct OrderCellView: View {
         HStack {
             VStack(alignment: .leading) {
                 Text(order.name)
+                    .accessibilityIdentifier("title")
                     .font(.headline)
                     .padding(.bottom, 1)
-                HStack {
-                    Text(order.coffeeName)
-                    Text("(\(order.size.rawValue))")
-                }
-                .opacity(0.5)
+                
+                Text("\(order.coffeeName) (\(order.size.rawValue))")
+                    .accessibilityIdentifier("subtitle")
+                    .opacity(0.5)
             }
             
             Spacer()
@@ -34,6 +34,7 @@ struct OrderCellView: View {
                     return formatter
                 }()
             )
+            .accessibilityIdentifier("price")
             .font(.title2)
         }
     }

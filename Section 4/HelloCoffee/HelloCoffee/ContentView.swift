@@ -42,6 +42,7 @@ struct ContentView: View {
                 Button("Place Order") {
                     isPlacingOrder = true
                 }
+                .accessibilityIdentifier("placeOrderButton")
             }
         }
         .embedForNavigation()

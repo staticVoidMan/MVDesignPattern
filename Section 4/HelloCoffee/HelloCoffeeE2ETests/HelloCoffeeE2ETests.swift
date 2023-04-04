@@ -9,11 +9,44 @@ import XCTest
 
 final class HelloCoffeeE2ETests: XCTestCase {
     
-    func testShouldShow_Message_WhenNoOrder() {
-        let app = XCUIApplication()
+    private var app: XCUIApplication!
+    
+    override func setUp() {
+        app = XCUIApplication()
         continueAfterFailure = false
-        
         app.launch()
+    }
+    
+    func testShouldShow_Message_WhenNoOrder() {
         XCTAssertEqual(app.staticTexts["noOrdersText"].label, "No orders found!")
+    }
+    
+    func testShouldShow_NewlyCreatedOrder() {
+        app.buttons["placeOrderButton"].tap()
+        
+        let customerNameField = app.textFields["customerName"]
+        let coffeeNameField = app.textFields["coffeeName"]
+        let priceField = app.textFields["coffeePrice"]
+        
+        customerNameField.tap()
+        customerNameField.typeText("John")
+        
+        coffeeNameField.tap()
+        coffeeNameField.typeText("Some Coffee")
+        
+        priceField.tap()
+        priceField.typeText("99.9")
+        
+        app.buttons["orderCoffee"].tap()
+        
+        XCTAssertEqual(app.staticTexts["title"].label, "John")
+        XCTAssertEqual(app.staticTexts["subtitle"].label, "Some Coffee (Medium)")
+        XCTAssertEqual(app.staticTexts["price"].label, "$99.90")
+        
+        addTeardownBlock {
+            let url = URL(string: "https://island-bramble.glitch.me/test/clear-orders")!
+            let (_, _) = try await URLSession.shared.data(from: url)
+            print("done")
+        }
     }
 }

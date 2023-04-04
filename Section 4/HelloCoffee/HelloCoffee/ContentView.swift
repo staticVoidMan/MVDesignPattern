@@ -12,12 +12,21 @@ struct ContentView: View {
     @EnvironmentObject
     private var model: OrderModel
     
+    var isOrderListEmpty: Binding<Bool> {
+        Binding<Bool>(
+            get: { model.orders.isEmpty },
+            set: { _, _ in }
+        )
+    }
+    
     var body: some View {
-        VStack {
-            if model.orders.isEmpty {
+        ConditionalView(
+            isOrderListEmpty,
+            then: {
                 Text("No orders found!")
                     .accessibilityIdentifier("noOrdersText")
-            } else {
+            },
+            else: {
                 List(model.orders) { order in
                     OrderCellView(order: order)
                 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct HelloCoffeeApp: App {
     
     @StateObject
-    var model = OrderListModel(provider: OrderAPIProvider())
+    var model = OrderModel(provider: OrderAPIProvider())
     
     var body: some Scene {
         WindowGroup {

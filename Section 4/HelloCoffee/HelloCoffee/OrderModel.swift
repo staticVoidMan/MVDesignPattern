@@ -1,5 +1,5 @@
 //
-//  OrderListModel.swift
+//  OrderModel.swift
 //  HelloCoffee
 //
 //  Created by Amin Siddiqui on 30/03/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class OrderListModel: ObservableObject {
+class OrderModel: ObservableObject {
     
     let provider: OrderProvider
     

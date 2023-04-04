@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @EnvironmentObject
-    private var model: OrderListModel
+    private var model: OrderModel
     
     var body: some View {
         VStack {
@@ -33,7 +33,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(
-                OrderListModel(
+                OrderModel(
                     provider: OrderAPIProvider()
                 )
             )

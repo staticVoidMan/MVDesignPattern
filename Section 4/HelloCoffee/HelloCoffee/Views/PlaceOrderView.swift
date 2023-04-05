@@ -16,6 +16,7 @@ struct PlaceOrderViewErrors {
 
 struct PlaceOrderView: View {
     
+    let order: Order?
     @State private var name: String = ""
     @State private var coffeeName: String = ""
     @State private var price: String = ""
@@ -53,6 +54,12 @@ struct PlaceOrderView: View {
     
     @State private var errors: PlaceOrderViewErrors = .init()
     
+    var isUpdate: Bool { order != nil }
+    
+    init(order: Order? = nil) {
+        self.order = order
+    }
+    
     var body: some View {
         Form {
             TextField("Customer Name", text: $name)
@@ -82,17 +89,17 @@ struct PlaceOrderView: View {
             }
             .pickerStyle(.segmented)
             
-            Button("Place Order") {
+            Button(isUpdate ? "Update" : "Order") {
                 if isFormValid {
                     let order = Order(
-                        id: nil,
+                        id: order?.id,
                         name: name,
                         coffeeName: coffeeName,
                         total: Double(price) ?? 0,
                         size: coffeeSize
                     )
                     Task {
-                        if await model.placeOrder(order) {
+                        if await model.placeOrUpdateOrder(order) {
                             dismiss()
                         }
                     }
@@ -101,17 +108,31 @@ struct PlaceOrderView: View {
             .placement(.center)
             .accessibilityIdentifier("orderCoffee")
         }
-        .embedForNavigation(title: "Add Coffee")
+        .embedForNavigation(title: isUpdate ? "Your Coffee" : "Add Coffee")
+        .onAppear {
+            if let order {
+                name = order.name
+                coffeeName = order.coffeeName
+                price = String(order.total)
+                coffeeSize = order.size
+            }
+        }
     }
 }
 
 struct PlaceOrderView_Previews: PreviewProvider {
+    
+    static var model: OrderModel = OrderModel(provider: OrderAPIProvider())
+    
     static var previews: some View {
-        PlaceOrderView()
-            .environmentObject(
-                OrderModel(
-                    provider: OrderAPIProvider()
-                )
-            )
+        Group {
+            PlaceOrderView()
+                .environmentObject(model)
+                .previewDisplayName("Create Order")
+            
+            PlaceOrderView(order: PreviewData.smallHotCoffee)
+                .environmentObject(model)
+                .previewDisplayName("Update Order")
+        }
     }
 }

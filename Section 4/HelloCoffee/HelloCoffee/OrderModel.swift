@@ -27,7 +27,15 @@ class OrderModel: ObservableObject {
         }
     }
     
-    func placeOrder(_ order: Order) async -> Bool {
+    func getOrder(byId id: OrderID) -> Order? {
+        orders.first { $0.id == id }
+    }
+    
+    func placeOrUpdateOrder(_ order: Order) async -> Bool {
+        await (order.id == nil ? placeOrder(order) : updateOrder(order))
+    }
+    
+    private func placeOrder(_ order: Order) async -> Bool {
         do {
             let newOrder = try await provider.placeOrder(order)
             orders.append(newOrder)
@@ -38,12 +46,12 @@ class OrderModel: ObservableObject {
         }
     }
     
-    func updateOrder(_ order: Order) async -> Bool {
-        guard let index = orders.firstIndex(of: order)
+    private func updateOrder(_ order: Order) async -> Bool {
+        guard let index = orders.firstIndex(where: { $0.id == order.id })
         else { return false }
         
         do {
-            try await provider.updateOrder(order)
+            let _ = try await provider.updateOrder(order)
             orders[index] = order
             return true
         } catch {

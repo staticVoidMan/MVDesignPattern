@@ -9,46 +9,53 @@ import SwiftUI
 
 struct OrderDetailView: View {
     
-    let order: Order
+    let orderID: OrderID
+    
+    var order: Order? {
+        model.getOrder(byId: orderID)
+    }
+    
+    @EnvironmentObject private var model: OrderModel
     
     @State private var isEditing: Bool = false
     
     var body: some View {
         VStack {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(order.coffeeName)
-                    .font(.title)
-                
-                Text(order.size.rawValue)
-                    .opacity(0.5)
-                
-                Text(order.total as NSNumber, formatter: NumberFormatter.currencyFormat)
-                
-                HStack {
-                    Spacer()
-                    Button("Delete", role: .destructive) {
-                        print(#function)
+            if let order {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(order.coffeeName)
+                        .font(.title)
+                    
+                    Text(order.size.rawValue)
+                        .opacity(0.5)
+                    
+                    Text(order.total as NSNumber, formatter: NumberFormatter.currencyFormat)
+                    
+                    HStack {
+                        Spacer()
+                        Button("Delete", role: .destructive) {
+                            print(#function)
+                        }
+                        .padding()
+                        Button("Edit") {
+                            isEditing = true
+                        }
+                        .padding()
+                        Spacer()
                     }
-                    .padding()
-                    Button("Edit") {
-                        isEditing = true
-                    }
-                    .padding()
-                    Spacer()
                 }
             }
-            
             Spacer()
         }
         .padding()
         .sheet(isPresented: $isEditing) {
-            PlaceOrderView()
+            PlaceOrderView(order: order)
         }
     }
 }
 
 struct OrderDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderDetailView(order: PreviewData.smallHotCoffee)
+        OrderDetailView(orderID: 0)
     }
 }

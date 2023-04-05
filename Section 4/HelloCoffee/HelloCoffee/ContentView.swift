@@ -38,7 +38,9 @@ struct ContentView: View {
                     .onDelete(perform: deleteOrder(at:))
                 }
                 .navigationDestination(for: Order.self) { order in
-                    OrderDetailView(order: order)
+                    if let orderId = order.id {
+                        OrderDetailView(orderID: orderId)
+                    }
                 }
                 .accessibilityIdentifier("orderList")
             }

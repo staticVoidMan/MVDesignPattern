@@ -16,6 +16,7 @@ struct OrderDetailView: View {
     }
     
     @EnvironmentObject private var model: OrderModel
+    @Environment(\.dismiss) private var dismiss
     
     @State private var isEditing: Bool = false
     
@@ -34,7 +35,11 @@ struct OrderDetailView: View {
                     HStack {
                         Spacer()
                         Button("Delete", role: .destructive) {
-                            print(#function)
+                            Task {
+                                if await model.deleteOrder(orderID) {
+                                    dismiss()
+                                }
+                            }
                         }
                         .padding()
                         Button("Edit") {

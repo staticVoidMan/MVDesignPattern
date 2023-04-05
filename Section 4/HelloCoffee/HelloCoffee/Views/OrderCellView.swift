@@ -28,11 +28,7 @@ struct OrderCellView: View {
             
             Text(
                 order.total as NSNumber,
-                formatter: {
-                    let formatter = NumberFormatter()
-                    formatter.numberStyle = .currency
-                    return formatter
-                }()
+                formatter: NumberFormatter.currencyFormat
             )
             .accessibilityIdentifier("price")
             .font(.title2)

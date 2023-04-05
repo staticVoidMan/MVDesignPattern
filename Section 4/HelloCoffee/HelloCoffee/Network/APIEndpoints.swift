@@ -32,6 +32,7 @@ enum APIEndpoints {
     case base
     case listOrders
     case createOrder
+    case updateOrder(OrderID)
     case deleteOrder(OrderID)
     
     var path: String {
@@ -47,6 +48,8 @@ enum APIEndpoints {
             return "test/orders"
         case .createOrder:
             return "test/new-order"
+        case let .updateOrder(id):
+            return "test/orders/\(id)"
         case let .deleteOrder(id):
             return "test/orders/\(id)"
         }

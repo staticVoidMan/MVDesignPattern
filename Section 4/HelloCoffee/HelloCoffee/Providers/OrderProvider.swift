@@ -10,6 +10,7 @@ import Foundation
 protocol OrderProvider {
     func getOrders() async throws -> [Order]
     func placeOrder(_ order: Order) async throws -> Order
+    func updateOrder(_ order: Order) async throws
     func deleteOrder(_ id: OrderID) async throws
 }
 
@@ -53,6 +54,24 @@ struct OrderAPIProvider: OrderProvider {
         
         let newOrder = try JSONDecoder().decode(Order.self, from: data)
         return newOrder
+    }
+    
+    func updateOrder(_ order: Order) async throws {
+        guard let orderID = order.id
+        else { throw NetworkError.badRequest }
+        
+        guard let baseURL = URL(string: APIEndpoints.base.path),
+              let url = URL(string: APIEndpoints.updateOrder(orderID).path, relativeTo: baseURL)
+        else { throw NetworkError.badURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (_, response) = try await URLSession.shared.data(for: request)
+        
+        guard (response as? HTTPURLResponse)?.statusCode == 200
+        else { throw NetworkError.badRequest }
     }
     
     func deleteOrder(_ id: OrderID) async throws {

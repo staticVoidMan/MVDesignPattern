@@ -38,6 +38,20 @@ class OrderModel: ObservableObject {
         }
     }
     
+    func updateOrder(_ order: Order) async -> Bool {
+        guard let index = orders.firstIndex(of: order)
+        else { return false }
+        
+        do {
+            try await provider.updateOrder(order)
+            orders[index] = order
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
+    
     func deleteOrder(_ id: OrderID) async -> Bool {
         guard let index = orders.firstIndex(where: { $0.id == id })
         else { return true }

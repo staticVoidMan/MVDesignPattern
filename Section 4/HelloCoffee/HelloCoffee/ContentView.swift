@@ -31,9 +31,14 @@ struct ContentView: View {
             else: {
                 List {
                     ForEach(model.orders, id: \.hashValue) { order in
-                        OrderCellView(order: order)
+                        NavigationLink(value: order) {
+                            OrderCellView(order: order)
+                        }
                     }
                     .onDelete(perform: deleteOrder(at:))
+                }
+                .navigationDestination(for: Order.self) { order in
+                    OrderDetailView(order: order)
                 }
                 .accessibilityIdentifier("orderList")
             }

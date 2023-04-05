@@ -23,6 +23,7 @@
 		90CFDCDE29DAAC6E00D48149 /* PlaceOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CFDCDD29DAAC6E00D48149 /* PlaceOrderView.swift */; };
 		90CFDCE129DAB2BA00D48149 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CFDCE029DAB2BA00D48149 /* View+Extensions.swift */; };
 		90CFDCE329DABD2800D48149 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CFDCE229DABD2800D48149 /* String+Extensions.swift */; };
+		90EBACCE29DD498A008B5FD5 /* OrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EBACCD29DD498A008B5FD5 /* OrderDetailView.swift */; };
 		90EBACD029DD4A4E008B5FD5 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EBACCF29DD4A4E008B5FD5 /* NumberFormatter.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		90CFDCDD29DAAC6E00D48149 /* PlaceOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderView.swift; sourceTree = "<group>"; };
 		90CFDCE029DAB2BA00D48149 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		90CFDCE229DABD2800D48149 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		90EBACCD29DD498A008B5FD5 /* OrderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailView.swift; sourceTree = "<group>"; };
 		90EBACCF29DD4A4E008B5FD5 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 			children = (
 				903E121F29D5A43C0022A557 /* OrderCellView.swift */,
 				90CFDCDD29DAAC6E00D48149 /* PlaceOrderView.swift */,
+				90EBACCD29DD498A008B5FD5 /* OrderDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				90EBACD029DD4A4E008B5FD5 /* NumberFormatter.swift in Sources */,
 				9038DECE29D5BC17001B1A26 /* APIEndpoints.swift in Sources */,
 				900F8F9E29D598E400E3BB36 /* ContentView.swift in Sources */,
+				90EBACCE29DD498A008B5FD5 /* OrderDetailView.swift in Sources */,
 				903E122229D5A74E0022A557 /* PreviewData.swift in Sources */,
 				900F8F9C29D598E400E3BB36 /* HelloCoffeeApp.swift in Sources */,
 				903E122029D5A43C0022A557 /* OrderCellView.swift in Sources */,

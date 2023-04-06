@@ -44,9 +44,10 @@ final class HelloCoffeeE2ETests: XCTestCase {
         XCTAssertEqual(app.staticTexts["price"].label, "$99.90")
         
         addTeardownBlock {
-            let url = URL(string: "https://island-bramble.glitch.me/test/clear-orders")!
-            let (_, _) = try await URLSession.shared.data(from: url)
-            print("done")
+            let url = URL(string: "https://topaz-azure-kiwi.glitch.me/order/all")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "DELETE"
+            let _ = try await URLSession.shared.data(for: request)
         }
     }
     
@@ -85,9 +86,10 @@ final class HelloCoffeeE2ETests: XCTestCase {
         XCTAssertEqual(list.cells.count, 0)
         
         addTeardownBlock {
-            let url = URL(string: "https://island-bramble.glitch.me/test/clear-orders")!
-            let (_, _) = try await URLSession.shared.data(from: url)
-            print("done")
+            let url = URL(string: "https://topaz-azure-kiwi.glitch.me/order/all")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "DELETE"
+            let _ = try await URLSession.shared.data(for: request)
         }
     }
 }

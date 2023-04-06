@@ -34,6 +34,7 @@ struct OrderDetailView: View {
                     
                     HStack {
                         Spacer()
+                        
                         Button("Delete", role: .destructive) {
                             Task {
                                 if await model.deleteOrder(orderID) {
@@ -42,10 +43,13 @@ struct OrderDetailView: View {
                             }
                         }
                         .padding()
+                        
                         Button("Edit") {
                             isEditing = true
                         }
                         .padding()
+                        .accessibilityIdentifier("edit")
+                        
                         Spacer()
                     }
                 }
@@ -61,6 +65,6 @@ struct OrderDetailView: View {
 
 struct OrderDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderDetailView(orderID: 0)
+        OrderDetailView(orderID: "0")
     }
 }

@@ -5,18 +5,6 @@
 //  Created by Amin Siddiqui on 30/03/23.
 //
 
-/*
- curl --location 'https://island-bramble.glitch.me/test/orders'; \
- curl --location 'https://island-bramble.glitch.me/test/new-order' \
- --header 'Content-Type: application/json' \
- --data '{
-     "name": "John Doe",
-     "coffeeName": "Hot Coffee",
-     "total": 4.50,
-     "size": "Medium"
- }'
- */
-
 private let environment: APIEnvironment = .test
 
 enum APIEnvironment {
@@ -40,18 +28,18 @@ enum APIEndpoints {
         case .base:
             switch APIEnvironment.current {
             case .test:
-                return "https://island-bramble.glitch.me"
+                return "https://topaz-azure-kiwi.glitch.me"
             case .prod:
-                return "https://island-bramble.glitch.me"
+                return "https://tame-citrine-carpet.glitch.me"
             }
         case .listOrders:
-            return "test/orders"
+            return "order/all"
         case .createOrder:
-            return "test/new-order"
+            return "order/create"
         case let .updateOrder(id):
-            return "test/orders/\(id)"
+            return "order/\(id)"
         case let .deleteOrder(id):
-            return "test/orders/\(id)"
+            return "order/\(id)"
         }
     }
 }

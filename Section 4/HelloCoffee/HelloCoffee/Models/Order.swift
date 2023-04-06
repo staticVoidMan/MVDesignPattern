@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias OrderID = Int
+typealias OrderID = String
 
 enum CoffeeSize: String, Codable, CaseIterable {
     case small = "Small"

@@ -26,11 +26,14 @@ struct OrderDetailView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(order.coffeeName)
                         .font(.title)
+                        .accessibilityIdentifier("coffeeName")
                     
                     Text(order.size.rawValue)
                         .opacity(0.5)
+                        .accessibilityIdentifier("coffeeSize")
                     
                     Text(order.total as NSNumber, formatter: NumberFormatter.currencyFormat)
+                        .accessibilityIdentifier("coffeePrice")
                     
                     HStack {
                         Spacer()

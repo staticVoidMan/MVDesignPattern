@@ -92,4 +92,72 @@ final class HelloCoffeeE2ETests: XCTestCase {
             let _ = try await URLSession.shared.data(for: request)
         }
     }
+    
+    func testShouldEdit_ExistingOrder() {
+    createOrder: do {
+        app.buttons["placeOrderButton"].tap()
+        
+        let customerNameField = app.textFields["customerName"]
+        let coffeeNameField = app.textFields["coffeeName"]
+        let priceField = app.textFields["coffeePrice"]
+        
+        customerNameField.tap()
+        customerNameField.typeText("John")
+        
+        coffeeNameField.tap()
+        coffeeNameField.typeText("Coffee")
+        
+        priceField.tap()
+        priceField.typeText("99.9")
+        
+        app.buttons["Large"].tap()
+        
+        app.buttons["orderCoffee"].tap()
+    }
+        
+    openOrderDetail: do {
+        let list = app.collectionViews["orderList"]
+        XCTAssertTrue(list.waitForExistence(timeout: 2))
+        
+        list.buttons["title-subtitle-price"].tap()
+        
+        let edit = app.buttons["edit"]
+        XCTAssertTrue(edit.waitForExistence(timeout: 2))
+        
+        edit.tap()
+    }
+        
+    editOrder: do {
+        let customerNameField = app.textFields["customerName"]
+        let coffeeNameField = app.textFields["coffeeName"]
+        let priceField = app.textFields["coffeePrice"]
+        
+        customerNameField.tap(withNumberOfTaps: 2, numberOfTouches: 1)
+        customerNameField.typeText("New John")
+        
+        coffeeNameField.tap(withNumberOfTaps: 2, numberOfTouches: 1)
+        coffeeNameField.typeText("New Coffee")
+        
+        priceField.tap(withNumberOfTaps: 2, numberOfTouches: 1)
+        priceField.typeText("3")
+        
+        app.buttons["Small"].tap()
+        
+        app.buttons["orderCoffee"].tap()
+    }
+        
+    confirmChanges: do {
+        app.textFields["coffeeName"].waitForExistence(timeout: 2)
+        XCTAssertEqual(app.staticTexts["coffeeName"].label, "New Coffee")
+        XCTAssertEqual(app.staticTexts["coffeeSize"].label, "Small")
+        XCTAssertEqual(app.staticTexts["coffeePrice"].label, "$3.00")
+    }
+        
+        addTeardownBlock {
+            let url = URL(string: "https://topaz-azure-kiwi.glitch.me/order/all")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "DELETE"
+            let _ = try await URLSession.shared.data(for: request)
+        }
+    }
 }

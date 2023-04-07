@@ -13,6 +13,7 @@
 		90C007C029DFFBD500C19A85 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90C007BF29DFFBD500C19A85 /* Preview Assets.xcassets */; };
 		90C007CB29E0002500C19A85 /* BudgetModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90C007C929E0002500C19A85 /* BudgetModel.xcdatamodeld */; };
 		90C007CE29E000A100C19A85 /* BudgetCategory+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C007CD29E000A100C19A85 /* BudgetCategory+CoreData.swift */; };
+		90C007D129E001F200C19A85 /* CoreDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C007D029E001F200C19A85 /* CoreDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		90C007BF29DFFBD500C19A85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		90C007CA29E0002500C19A85 /* BudgetModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetModel.xcdatamodel; sourceTree = "<group>"; };
 		90C007CD29E000A100C19A85 /* BudgetCategory+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetCategory+CoreData.swift"; sourceTree = "<group>"; };
+		90C007D029E001F200C19A85 /* CoreDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				90C007B829DFFBD400C19A85 /* HelloBudgetApp.swift */,
 				90C007BA29DFFBD400C19A85 /* ContentView.swift */,
+				90C007CF29E001E100C19A85 /* Providers */,
 				90C007CC29E0008500C19A85 /* Models */,
 				90C007C929E0002500C19A85 /* BudgetModel.xcdatamodeld */,
 				90C007BC29DFFBD500C19A85 /* Assets.xcassets */,
@@ -79,6 +82,14 @@
 				90C007CD29E000A100C19A85 /* BudgetCategory+CoreData.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		90C007CF29E001E100C19A85 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				90C007D029E001F200C19A85 /* CoreDataProvider.swift */,
+			);
+			path = Providers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +166,7 @@
 				90C007B929DFFBD400C19A85 /* HelloBudgetApp.swift in Sources */,
 				90C007CB29E0002500C19A85 /* BudgetModel.xcdatamodeld in Sources */,
 				90C007CE29E000A100C19A85 /* BudgetCategory+CoreData.swift in Sources */,
+				90C007D129E001F200C19A85 /* CoreDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

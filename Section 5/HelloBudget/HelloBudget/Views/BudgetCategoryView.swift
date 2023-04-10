@@ -11,6 +11,28 @@ struct BudgetCategoryView: View {
     
     let category: BudgetCategory
     
+    @Environment(\.managedObjectContext) private var context
+    
+    @State private var title: String = ""
+    @State private var amount: String = ""
+    
+    private var isFormValid: Bool {
+        guard let amount = Double(amount) else { return false }
+        return !title.isEmpty && (amount > 0)
+    }
+    
+    private func saveTransaction() {
+        let transaction = BudgetTransaction(context: context)
+        transaction.title = title
+        transaction.total = Double(amount)!
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+    }
+    
     var body: some View {
         VStack {
             Text(category.title ?? "")
@@ -23,6 +45,19 @@ struct BudgetCategoryView: View {
             .fontWeight(.bold)
             
             Spacer()
+            
+            Form {
+                Section("Add Transaction") {
+                    TextField("Title", text: $title)
+                    TextField("Amount", text: $amount)
+                }
+                
+                Button("Save") {
+                    print(#function)
+                }
+                .frame(maxWidth: .infinity)
+                .disabled(!isFormValid)
+            }
         }
     }
 }

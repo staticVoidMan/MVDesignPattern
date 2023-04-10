@@ -11,6 +11,8 @@
 		90739CAC29E3DA42001A5F76 /* AddBudgetCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90739CAB29E3DA42001A5F76 /* AddBudgetCategoryView.swift */; };
 		90739CAE29E3E3B0001A5F76 /* BudgetCategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90739CAD29E3E3B0001A5F76 /* BudgetCategoryListView.swift */; };
 		90739CB029E401FF001A5F76 /* BudgetTransaction+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90739CAF29E401FF001A5F76 /* BudgetTransaction+CoreData.swift */; };
+		90739CB429E405F1001A5F76 /* BudgetCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90739CB329E405F1001A5F76 /* BudgetCategoryView.swift */; };
+		90739CB629E40628001A5F76 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90739CB529E40628001A5F76 /* PreviewData.swift */; };
 		90C007B929DFFBD400C19A85 /* HelloBudgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C007B829DFFBD400C19A85 /* HelloBudgetApp.swift */; };
 		90C007BB29DFFBD400C19A85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C007BA29DFFBD400C19A85 /* ContentView.swift */; };
 		90C007BD29DFFBD500C19A85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90C007BC29DFFBD500C19A85 /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 		90739CAB29E3DA42001A5F76 /* AddBudgetCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetCategoryView.swift; sourceTree = "<group>"; };
 		90739CAD29E3E3B0001A5F76 /* BudgetCategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryListView.swift; sourceTree = "<group>"; };
 		90739CAF29E401FF001A5F76 /* BudgetTransaction+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetTransaction+CoreData.swift"; sourceTree = "<group>"; };
+		90739CB329E405F1001A5F76 /* BudgetCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryView.swift; sourceTree = "<group>"; };
+		90739CB529E40628001A5F76 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		90C007B529DFFBD400C19A85 /* HelloBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C007B829DFFBD400C19A85 /* HelloBudgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloBudgetApp.swift; sourceTree = "<group>"; };
 		90C007BA29DFFBD400C19A85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +63,7 @@
 			children = (
 				90739CAB29E3DA42001A5F76 /* AddBudgetCategoryView.swift */,
 				90739CAD29E3E3B0001A5F76 /* BudgetCategoryListView.swift */,
+				90739CB329E405F1001A5F76 /* BudgetCategoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				90C007BF29DFFBD500C19A85 /* Preview Assets.xcassets */,
+				90739CB529E40628001A5F76 /* PreviewData.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -193,8 +199,10 @@
 				90C007BB29DFFBD400C19A85 /* ContentView.swift in Sources */,
 				90C007B929DFFBD400C19A85 /* HelloBudgetApp.swift in Sources */,
 				90739CAC29E3DA42001A5F76 /* AddBudgetCategoryView.swift in Sources */,
+				90739CB629E40628001A5F76 /* PreviewData.swift in Sources */,
 				90739CA929E3D916001A5F76 /* NumberFormatter+Extensions.swift in Sources */,
 				90739CB029E401FF001A5F76 /* BudgetTransaction+CoreData.swift in Sources */,
+				90739CB429E405F1001A5F76 /* BudgetCategoryView.swift in Sources */,
 				90C007CB29E0002500C19A85 /* BudgetModel.xcdatamodeld in Sources */,
 				90C007CE29E000A100C19A85 /* BudgetCategory+CoreData.swift in Sources */,
 				90C007D129E001F200C19A85 /* CoreDataProvider.swift in Sources */,

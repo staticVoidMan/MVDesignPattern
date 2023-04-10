@@ -19,12 +19,14 @@ struct BudgetCategoryListView: View {
                 Text("List is empty")
             } else {
                 ForEach(categories) { category in
-                    HStack {
-                        Text(category.title ?? "")
-                        
-                        Spacer()
-                        
-                        Text(category.total as NSNumber, formatter: NumberFormatter.currency)
+                    NavigationLink(value: category) {
+                        HStack {
+                            Text(category.title ?? "")
+                            
+                            Spacer()
+                            
+                            Text(category.total as NSNumber, formatter: NumberFormatter.currency)
+                        }
                     }
                 }
                 .onDelete { indexSet in
@@ -33,6 +35,9 @@ struct BudgetCategoryListView: View {
                     }
                 }
             }
+        }
+        .navigationDestination(for: BudgetCategory.self) { category in
+            BudgetCategoryView(category: category)
         }
     }
 }

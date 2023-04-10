@@ -14,18 +14,26 @@ struct ContentView: View {
     
     @State private var isPresentingAddNewCategory: Bool = false
     
+    private var grandTotal: Double {
+        categories.reduce(0) { $0 + $1.total }
+    }
+    
     var body: some View {
         NavigationStack {
-            List(categories) { category in
-                Text(category.title ?? "")
-            }
-            .sheet(isPresented: $isPresentingAddNewCategory) {
-                AddBudgetCategoryView()
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Add new category") {
-                        isPresentingAddNewCategory = true
+            VStack {
+                Text(grandTotal as NSNumber, formatter: NumberFormatter.currency)
+                    .font(.headline)
+                
+                BudgetCategoryListView(categories: categories)
+                
+                .sheet(isPresented: $isPresentingAddNewCategory) {
+                    AddBudgetCategoryView()
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Add new category") {
+                            isPresentingAddNewCategory = true
+                        }
                     }
                 }
             }

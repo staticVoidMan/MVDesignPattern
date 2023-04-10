@@ -26,6 +26,8 @@ struct BudgetCategoryView: View {
         transaction.title = title
         transaction.total = Double(amount)!
         
+        category.addToTransactions(transaction)
+        
         do {
             try context.save()
         } catch {
@@ -53,11 +55,13 @@ struct BudgetCategoryView: View {
                 }
                 
                 Button("Save") {
-                    print(#function)
+                    saveTransaction()
                 }
                 .frame(maxWidth: .infinity)
                 .disabled(!isFormValid)
             }
+            
+            TransactionListView(request: category.allTransactionsRequest)
         }
     }
 }

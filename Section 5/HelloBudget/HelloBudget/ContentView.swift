@@ -18,20 +18,26 @@ struct ContentView: View {
         categories.reduce(0) { $0 + $1.total }
     }
     
+    private func deleteCategory(_ category: BudgetCategory) {
+        context.delete(category)
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
                 Text(grandTotal as NSNumber, formatter: NumberFormatter.currency)
                     .font(.headline)
                 
-                BudgetCategoryListView(categories: categories) { category in
-                    context.delete(category)
-                    do {
-                        try context.save()
-                    } catch {
-                        print(error)
-                    }
-                }
+                BudgetCategoryListView(
+                    categories: categories,
+                    onDelete: deleteCategory
+                )
                 
                 .sheet(isPresented: $isPresentingAddNewCategory) {
                     AddBudgetCategoryView()

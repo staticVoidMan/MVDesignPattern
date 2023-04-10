@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90739CA929E3D916001A5F76 /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90739CA829E3D916001A5F76 /* NumberFormatter+Extensions.swift */; };
+		90739CAC29E3DA42001A5F76 /* AddBudgetCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90739CAB29E3DA42001A5F76 /* AddBudgetCategoryView.swift */; };
 		90C007B929DFFBD400C19A85 /* HelloBudgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C007B829DFFBD400C19A85 /* HelloBudgetApp.swift */; };
 		90C007BB29DFFBD400C19A85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C007BA29DFFBD400C19A85 /* ContentView.swift */; };
 		90C007BD29DFFBD500C19A85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90C007BC29DFFBD500C19A85 /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		90739CA829E3D916001A5F76 /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		90739CAB29E3DA42001A5F76 /* AddBudgetCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetCategoryView.swift; sourceTree = "<group>"; };
 		90C007B529DFFBD400C19A85 /* HelloBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C007B829DFFBD400C19A85 /* HelloBudgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloBudgetApp.swift; sourceTree = "<group>"; };
 		90C007BA29DFFBD400C19A85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +42,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90739CA729E3D903001A5F76 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				90739CA829E3D916001A5F76 /* NumberFormatter+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		90739CAA29E3DA20001A5F76 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				90739CAB29E3DA42001A5F76 /* AddBudgetCategoryView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		90C007AC29DFFBD400C19A85 = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +79,8 @@
 			children = (
 				90C007B829DFFBD400C19A85 /* HelloBudgetApp.swift */,
 				90C007BA29DFFBD400C19A85 /* ContentView.swift */,
+				90739CAA29E3DA20001A5F76 /* Views */,
+				90739CA729E3D903001A5F76 /* Extensions */,
 				90C007CF29E001E100C19A85 /* Providers */,
 				90C007CC29E0008500C19A85 /* Models */,
 				90C007C929E0002500C19A85 /* BudgetModel.xcdatamodeld */,
@@ -164,6 +186,8 @@
 			files = (
 				90C007BB29DFFBD400C19A85 /* ContentView.swift in Sources */,
 				90C007B929DFFBD400C19A85 /* HelloBudgetApp.swift in Sources */,
+				90739CAC29E3DA42001A5F76 /* AddBudgetCategoryView.swift in Sources */,
+				90739CA929E3D916001A5F76 /* NumberFormatter+Extensions.swift in Sources */,
 				90C007CB29E0002500C19A85 /* BudgetModel.xcdatamodeld in Sources */,
 				90C007CE29E000A100C19A85 /* BudgetCategory+CoreData.swift in Sources */,
 				90C007D129E001F200C19A85 /* CoreDataProvider.swift in Sources */,

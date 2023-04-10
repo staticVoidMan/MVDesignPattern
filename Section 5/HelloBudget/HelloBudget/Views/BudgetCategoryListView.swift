@@ -11,6 +11,8 @@ struct BudgetCategoryListView: View {
     
     let categories: FetchedResults<BudgetCategory>
     
+    let onDelete: (BudgetCategory) -> Void
+    
     var body: some View {
         List {
             if categories.isEmpty {
@@ -23,6 +25,11 @@ struct BudgetCategoryListView: View {
                         Spacer()
                         
                         Text(category.total as NSNumber, formatter: NumberFormatter.currency)
+                    }
+                }
+                .onDelete { indexSet in
+                    indexSet.forEach { index in
+                        onDelete(categories[index])
                     }
                 }
             }

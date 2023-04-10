@@ -24,7 +24,14 @@ struct ContentView: View {
                 Text(grandTotal as NSNumber, formatter: NumberFormatter.currency)
                     .font(.headline)
                 
-                BudgetCategoryListView(categories: categories)
+                BudgetCategoryListView(categories: categories) { category in
+                    context.delete(category)
+                    do {
+                        try context.save()
+                    } catch {
+                        print(error)
+                    }
+                }
                 
                 .sheet(isPresented: $isPresentingAddNewCategory) {
                     AddBudgetCategoryView()

@@ -21,6 +21,11 @@ struct BudgetCategoryView: View {
         return !title.isEmpty && (amount > 0)
     }
     
+    private func resetForm() {
+        title = ""
+        amount = ""
+    }
+    
     private func saveTransaction() {
         let transaction = BudgetTransaction(context: context)
         transaction.title = title
@@ -30,6 +35,7 @@ struct BudgetCategoryView: View {
         
         do {
             try context.save()
+            resetForm()
         } catch {
             print(error)
         }

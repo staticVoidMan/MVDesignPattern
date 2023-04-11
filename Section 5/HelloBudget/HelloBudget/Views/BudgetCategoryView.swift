@@ -61,6 +61,8 @@ struct BudgetCategoryView: View {
                 .disabled(!isFormValid)
             }
             
+            BudgetSummaryView(category: category)
+            
             TransactionListView(request: category.allTransactionsRequest)
         }
     }

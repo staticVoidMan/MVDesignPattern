@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		904D822329E5379600EBD443 /* BudgetSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904D822229E5379600EBD443 /* BudgetSummaryView.swift */; };
 		9071392A29E4183F005EC09E /* TransactionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9071392929E4183F005EC09E /* TransactionListView.swift */; };
 		90739CA929E3D916001A5F76 /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90739CA829E3D916001A5F76 /* NumberFormatter+Extensions.swift */; };
 		90739CAC29E3DA42001A5F76 /* AddBudgetCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90739CAB29E3DA42001A5F76 /* AddBudgetCategoryView.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		904D822229E5379600EBD443 /* BudgetSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetSummaryView.swift; sourceTree = "<group>"; };
 		9071392929E4183F005EC09E /* TransactionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListView.swift; sourceTree = "<group>"; };
 		90739CA829E3D916001A5F76 /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		90739CAB29E3DA42001A5F76 /* AddBudgetCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetCategoryView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				90739CAD29E3E3B0001A5F76 /* BudgetCategoryListView.swift */,
 				90739CB329E405F1001A5F76 /* BudgetCategoryView.swift */,
 				9071392929E4183F005EC09E /* TransactionListView.swift */,
+				904D822229E5379600EBD443 /* BudgetSummaryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				90739CB629E40628001A5F76 /* PreviewData.swift in Sources */,
 				90739CA929E3D916001A5F76 /* NumberFormatter+Extensions.swift in Sources */,
 				9071392A29E4183F005EC09E /* TransactionListView.swift in Sources */,
+				904D822329E5379600EBD443 /* BudgetSummaryView.swift in Sources */,
 				90739CB029E401FF001A5F76 /* BudgetTransaction+CoreData.swift in Sources */,
 				90739CB429E405F1001A5F76 /* BudgetCategoryView.swift in Sources */,
 				90C007CB29E0002500C19A85 /* BudgetModel.xcdatamodeld in Sources */,

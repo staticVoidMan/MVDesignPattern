@@ -22,4 +22,22 @@ public class BudgetCategory: NSManagedObject {
         request.predicate = NSPredicate(format: "category = %@", self)
         return request
     }
+    
+    private var allTransactions: [BudgetTransaction] {
+        transactions?
+            .allObjects
+            .compactMap { $0 as? BudgetTransaction } ?? []
+    }
+    
+    private var spent: Double {
+        allTransactions.reduce(0) { $0 + $1.total }
+    }
+    
+    public var remainingTotal: Double {
+        total - spent
+    }
+    
+    public var hasOverspent: Bool {
+        return remainingTotal < 0
+    }
 }

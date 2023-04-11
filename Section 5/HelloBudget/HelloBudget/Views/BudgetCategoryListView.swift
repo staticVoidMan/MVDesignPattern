@@ -25,7 +25,11 @@ struct BudgetCategoryListView: View {
                             
                             Spacer()
                             
-                            Text(category.total as NSNumber, formatter: NumberFormatter.currency)
+                            VStack(alignment: .trailing) {
+                                Text(category.total as NSNumber, formatter: NumberFormatter.currency)
+                                
+                                BudgetSummaryView(category: category)
+                            }
                         }
                     }
                 }

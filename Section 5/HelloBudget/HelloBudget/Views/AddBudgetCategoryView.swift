@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AddBudgetCategoryView: View {
     
+    let category: BudgetCategory?
+    
     @State private var title: String = ""
     @State private var total: Double = 50
     
@@ -33,8 +35,12 @@ struct AddBudgetCategoryView: View {
         return errors.isEmpty
     }
     
+    init(category: BudgetCategory? = nil) {
+        self.category = category
+    }
+    
     private func save() {
-        let category = BudgetCategory(context: context)
+        let category = category ?? BudgetCategory(context: context)
         category.title = title
         category.total = total
         
@@ -66,6 +72,12 @@ struct AddBudgetCategoryView: View {
                 
                 ForEach(errors, id: \.self) { error in
                     Text(error)
+                }
+            }
+            .onAppear {
+                if let category {
+                    title = category.title ?? ""
+                    total = category.total
                 }
             }
             .toolbar {

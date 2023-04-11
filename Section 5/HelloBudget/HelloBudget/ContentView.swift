@@ -56,8 +56,8 @@ struct ContentView: View {
                     switch action {
                     case .add:
                         AddBudgetCategoryView()
-                    case .edit(_):
-                        AddBudgetCategoryView()
+                    case let .edit(category):
+                        AddBudgetCategoryView(category: category)
                     }
                 }
                 .toolbar {

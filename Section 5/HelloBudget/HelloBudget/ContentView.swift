@@ -9,10 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     
+    enum ActionContext: Identifiable {
+        var id: UUID {
+            UUID()
+        }
+        
+        case add
+        case edit(category: BudgetCategory)
+    }
+    
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(sortDescriptors: []) private var categories: FetchedResults<BudgetCategory>
     
-    @State private var isPresentingAddNewCategory: Bool = false
+    @State private var actionContext: ActionContext?
     
     private var grandTotal: Double {
         categories.reduce(0) { $0 + $1.total }
@@ -28,6 +37,10 @@ struct ContentView: View {
         }
     }
     
+    private func editCategory(_ category: BudgetCategory) {
+        actionContext = .edit(category: category)
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -36,16 +49,21 @@ struct ContentView: View {
                 
                 BudgetCategoryListView(
                     categories: categories,
-                    onDelete: deleteCategory
+                    onDelete: deleteCategory,
+                    onEdit: editCategory
                 )
-                
-                .sheet(isPresented: $isPresentingAddNewCategory) {
-                    AddBudgetCategoryView()
+                .sheet(item: $actionContext) { action in
+                    switch action {
+                    case .add:
+                        AddBudgetCategoryView()
+                    case .edit(_):
+                        AddBudgetCategoryView()
+                    }
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button("Add new category") {
-                            isPresentingAddNewCategory = true
+                            actionContext = .add
                         }
                     }
                 }

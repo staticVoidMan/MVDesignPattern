@@ -9,9 +9,12 @@ import SwiftUI
 
 struct BudgetCategoryListView: View {
     
+    typealias CategoryCompletion = (BudgetCategory) -> Void
+    
     let categories: FetchedResults<BudgetCategory>
     
-    let onDelete: (BudgetCategory) -> Void
+    let onDelete: CategoryCompletion
+    let onEdit: CategoryCompletion
     
     var body: some View {
         List {
@@ -30,6 +33,10 @@ struct BudgetCategoryListView: View {
                                 
                                 BudgetSummaryView(category: category)
                             }
+                        }
+                        .contentShape(Rectangle())
+                        .onLongPressGesture {
+                            onEdit(category)
                         }
                     }
                 }

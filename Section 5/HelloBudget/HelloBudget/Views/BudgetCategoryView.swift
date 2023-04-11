@@ -76,8 +76,10 @@ struct BudgetCategoryView: View {
                 .frame(maxWidth: .infinity)
                 .disabled(!isFormValid)
             }
+            .padding([.bottom])
             
             BudgetSummaryView(category: category)
+                .padding([.bottom], 4)
             
             TransactionListView(
                 request: category.allTransactionsRequest,

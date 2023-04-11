@@ -44,8 +44,14 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text(grandTotal as NSNumber, formatter: NumberFormatter.currency)
-                    .font(.headline)
+                HStack {
+                    Text("Total Budget:")
+                    Text(
+                        grandTotal as NSNumber,
+                        formatter: NumberFormatter.currency
+                    )
+                    .fontWeight(.bold)
+                }
                 
                 BudgetCategoryListView(
                     categories: categories,

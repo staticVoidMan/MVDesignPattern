@@ -10,10 +10,14 @@ import CoreData
 
 struct TransactionListView: View {
     
-    @FetchRequest private var transactions: FetchedResults<BudgetTransaction>
+    typealias OnDeleteCompletion = (BudgetTransaction) -> Void
     
-    init(request: NSFetchRequest<BudgetTransaction>) {
+    @FetchRequest private var transactions: FetchedResults<BudgetTransaction>
+    let onDelete: OnDeleteCompletion
+    
+    init(request: NSFetchRequest<BudgetTransaction>, onDelete: @escaping OnDeleteCompletion) {
         self._transactions = FetchRequest(fetchRequest: request)
+        self.onDelete = onDelete
     }
     
     var body: some View {
@@ -28,6 +32,11 @@ struct TransactionListView: View {
                         Text(transaction.total as NSNumber, formatter: NumberFormatter.currency)
                     }
                 }
+                .onDelete { indices in
+                    indices.forEach { index in
+                        onDelete(transactions[index])
+                    }
+                }
             }
         }
     }
@@ -37,6 +46,6 @@ struct TransactionListView_Previews: PreviewProvider {
     static var previews: some View {
         TransactionListView(
             request: PreviewData.someCategory.allTransactionsRequest
-        )
+        ) { _ in }
     }
 }

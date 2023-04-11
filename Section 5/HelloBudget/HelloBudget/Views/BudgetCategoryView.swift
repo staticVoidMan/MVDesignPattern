@@ -41,6 +41,16 @@ struct BudgetCategoryView: View {
         }
     }
     
+    private func deleteTransaction(_ transaction: BudgetTransaction) {
+        context.delete(transaction)
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+    }
+    
     var body: some View {
         VStack {
             Text(category.title ?? "")
@@ -69,7 +79,10 @@ struct BudgetCategoryView: View {
             
             BudgetSummaryView(category: category)
             
-            TransactionListView(request: category.allTransactionsRequest)
+            TransactionListView(
+                request: category.allTransactionsRequest,
+                onDelete: deleteTransaction(_:)
+            )
         }
     }
 }

@@ -19,7 +19,7 @@ struct ContentView: View {
     }
     
     @Environment(\.managedObjectContext) private var context
-    @FetchRequest(sortDescriptors: []) private var categories: FetchedResults<BudgetCategory>
+    @FetchRequest(fetchRequest: BudgetCategory.all) private var categories
     
     @State private var actionContext: ActionContext?
     

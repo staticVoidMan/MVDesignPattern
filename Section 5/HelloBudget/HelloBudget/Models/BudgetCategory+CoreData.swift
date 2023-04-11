@@ -14,6 +14,14 @@ public class BudgetCategory: NSManagedObject {
         self.dateCreated = Date()
     }
     
+    public static var all: NSFetchRequest<BudgetCategory> {
+        let request = BudgetCategory.fetchRequest()
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "dateCreated", ascending: true)
+        ]
+        return request
+    }
+    
     public var allTransactionsRequest: NSFetchRequest<BudgetTransaction> {
         let request = BudgetTransaction.fetchRequest()
         request.sortDescriptors = [
